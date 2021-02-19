@@ -4,16 +4,16 @@ import { difficulties, numberOfQuestions } from "../utils/constants";
 import { getCategories } from "../utils/datafetch";
 import Button from "./Button";
 
-const SelectSection = ({ setData, setOptions, data }) => {
+const SelectSection = ({ setData }) => {
   const [categories, setCategories] = useState([]);
-
-  const [quantity, setQuantity] = useState("");
-  const [category, setCategory] = useState("");
-  const [difficulty, setDifficulty] = useState("");
 
   const inputQuantity = useRef(null);
   const inputCategory = useRef(null);
   const inputDif = useRef(null);
+
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
 
   const handleQuantity = () => {
     setQuantity(
@@ -88,7 +88,6 @@ const SelectSection = ({ setData, setOptions, data }) => {
         category={category}
         difficulty={difficulty}
         setData={setData}
-        setOptions={setOptions}
       />
     </div>
   );
