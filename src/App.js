@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import QuestionCards from './components/QuestionCards';
-import SelectionMenu from './components/SelectionMenu';
-import { decodeString } from './utils/decodeString';
-import { shuffleOptions } from './utils/shuffleOptions';
+import QuestionCards from "./components/QuestionCards";
+import SelectionMenu from "./components/SelectionMenu";
+import { decodeString } from "./utils/decodeString";
+import { shuffleOptions } from "./utils/shuffleOptions";
 
 function App() {
   //TODO:
   /*
   shuffleOptions functioanl yapılacak.
-  loading animasyon konulacak.
   true-false conditional style olacak. 
   */
   const [data, setData] = useState([]);
@@ -25,10 +24,6 @@ function App() {
     );
   }, [data]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="App">
       <div className="mainContainer">
@@ -37,12 +32,16 @@ function App() {
           data={data}
           setIsLoading={setIsLoading}
         />
-        <QuestionCards
-          data={data}
-          setData={setData}
-          options={options}
-          correctAnswers={correctAnswers}
-        />
+        {isLoading ? (
+          <div className="loader"></div>
+        ) : (
+          <QuestionCards
+            data={data}
+            setData={setData}
+            options={options}
+            correctAnswers={correctAnswers}
+          />
+        )}
       </div>
     </div>
   );

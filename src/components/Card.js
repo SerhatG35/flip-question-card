@@ -1,4 +1,5 @@
-import { decodeString } from '../utils/decodeString';
+import { useState } from "react";
+import { decodeString } from "../utils/decodeString";
 
 const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
   const removeCard = () => {
@@ -8,14 +9,15 @@ const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
   };
 
   const checkAnswer = (e) => {
+    console.log(e);
     if (
       Number(e?.target?.parentNode?.id) === currentCard &&
       e?.target?.textContent === correctAnswer
     ) {
-      e.target.style.backgroundColor = 'green';
+      e.target.style.backgroundColor = "green";
       removeCard();
     } else {
-      e.target.style.backgroundColor = 'red';
+      e.target.style.backgroundColor = "red";
     }
   };
 
