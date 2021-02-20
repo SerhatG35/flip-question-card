@@ -56,7 +56,7 @@ code {
   display: flex;
   justify-content: center;
   border-radius: 0.4em;
-  background-color: #32292f;
+  background-color: #002E2C;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -88,13 +88,13 @@ code {
 
 .optionContainer .options {
   padding: 0.4em;
-  width: 70%;
+  width: 95%;
   margin-bottom: 0.5em;
   align-self: center;
   border-radius: 0.4em;
   border: none;
   background-color: #f5a65b;
-  color: #32292f;
+  color: #002E2C;
   font-size: 0.9em;
   font-weight: 700;
   outline: none;
@@ -134,7 +134,7 @@ code {
 }
 /* select */
 .selectionMenu {
-  background-color: #32292f;
+  background-color: #002E2C;
   width: 100%;
   height: 12%;
   align-self: center;
@@ -159,7 +159,7 @@ code {
   padding: 0.2em;
   font-size: 0.7em;
   background-color: #f5a65b;
-  color: #32292f;
+  color: #002E2C;
   outline: none;
 }
 .selectSection .bringQuestions {
@@ -170,10 +170,18 @@ code {
   padding: 0.3em;
   height: 100%;
   background-color: #f5a65b;
-  color: #32292f;
+  color: #002E2C;
   outline: none;
 }
 
+@media screen and (max-width: 1330px) {
+  .card .content .cardQuestion {
+    font-size: 1em;
+  }
+  .card .content .options {
+    font-size: 0.9em;
+  }
+}
 @media screen and (max-width: 1135px) {
   .selectionMenu {
     font-size: 1.2em;
@@ -185,11 +193,6 @@ code {
   }
 }
 @media screen and (max-width: 768px) {
-  .selectionMenu .selectSection select {
-    width: 8em;
-  }
-}
-@media screen and (max-width: 610px) {
   .selectionMenu .selectSection select {
     width: 8em;
   }

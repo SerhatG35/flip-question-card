@@ -3,19 +3,14 @@ import { useState, useEffect } from "react";
 import QuestionCards from "./components/QuestionCards";
 import SelectionMenu from "./components/SelectionMenu";
 import { decodeString } from "./utils/decodeString";
+import { shuffleOptions } from "./utils/shuffleOptions";
 
 function App() {
   const [data, setData] = useState([]);
   const [options, setOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState([]);
 
-  const shuffleOptions = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
+  
 
   useEffect(() => {
     console.log(data);
@@ -26,18 +21,13 @@ function App() {
       })
     );
   }, [data]);
-  useEffect(() => {
-    console.log(options, "options");
-  }, [options]);
-  useEffect(() => {
-    console.log(correctAnswer, "correct");
-  }, [correctAnswer]);
   return (
     <div className="App">
       <div className="mainContainer">
         <SelectionMenu setData={setData} data={data} />
         <QuestionCards
           data={data}
+          setData={setData}
           options={options}
           correctAnswer={correctAnswer}
         />
