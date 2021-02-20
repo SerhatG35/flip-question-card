@@ -1,35 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import QuestionCards from "./components/QuestionCards";
-import SelectionMenu from "./components/SelectionMenu";
-import { decodeString } from "./utils/decodeString";
-import { shuffleOptions } from "./utils/shuffleOptions";
+import QuestionCards from './components/QuestionCards';
+import SelectionMenu from './components/SelectionMenu';
+import { decodeString } from './utils/decodeString';
+import { shuffleOptions } from './utils/shuffleOptions';
 
 function App() {
+  //TODO:
+  /*
+  shuffleOptions functioanl yapılacak.
+  loading animasyon konulacak.
+  true-false conditional style olacak. 
+  */
   const [data, setData] = useState([]);
   const [options, setOptions] = useState([]);
-  const [correctAnswer, setCorrectAnswer] = useState([]);
-
-  
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
   useEffect(() => {
-    console.log(data);
-    setCorrectAnswer(data?.map((x) => decodeString(x.correct_answer)));
+    setCorrectAnswers(data?.map((x) => decodeString(x.correct_answer)));
     setOptions(
       data?.map((x) => {
         return shuffleOptions([...x?.incorrect_answers, x?.correct_answer]);
       })
     );
   }, [data]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
       <div className="mainContainer">
-        <SelectionMenu setData={setData} data={data} />
+        <SelectionMenu
+          setData={setData}
+          data={data}
+          setIsLoading={setIsLoading}
+        />
         <QuestionCards
           data={data}
           setData={setData}
           options={options}
-          correctAnswer={correctAnswer}
+          correctAnswers={correctAnswers}
         />
       </div>
     </div>

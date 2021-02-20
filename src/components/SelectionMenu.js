@@ -1,11 +1,15 @@
-import HeadSection from "./HeadSection";
-import SelectSection from "./SelectSection.js";
+import HeadSection from './HeadSection';
+import SelectSection from './SelectSection.js';
 
-const SelectionMenu = ({ setData, data }) => {
+const SelectionMenu = ({ setData, data, setIsLoading }) => {
   return (
     <div className="selectionMenu">
       <HeadSection />
-      <SelectSection setData={setData} data={data}/>
+      <SelectSection
+        setData={setData}
+        data={data}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 };
