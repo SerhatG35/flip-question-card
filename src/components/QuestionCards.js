@@ -1,10 +1,11 @@
-import Card from "./Card";
+import Card from './Card';
 
 const QuestionCards = ({
   data,
   options,
-  correctAnswer,
+  correctAnswers,
   setData,
+  setIsLoading,
 }) => {
   return (
     <div className="cardContainer">
@@ -14,7 +15,7 @@ const QuestionCards = ({
             card={card}
             data={data}
             options={options[index]}
-            correctAnswer={correctAnswer[index]}
+            correctAnswer={correctAnswers[index]}
             key={index}
             currentCard={index}
             setData={setData}

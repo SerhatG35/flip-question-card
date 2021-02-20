@@ -1,19 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
-import { difficulties, numberOfQuestions } from "../utils/constants";
-import { getCategories } from "../utils/datafetch";
-import Button from "./Button";
+import { getCategories } from '../utils/datafetch';
+import Button from './Button';
+import { numberOfQuestions, difficulties } from '../utils';
 
-const SelectSection = ({ setData }) => {
+const SelectSection = ({ setData, setIsLoading }) => {
   const [categories, setCategories] = useState([]);
 
   const inputQuantity = useRef(null);
   const inputCategory = useRef(null);
   const inputDif = useRef(null);
 
-  const [quantity, setQuantity] = useState("");
-  const [category, setCategory] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+  const [quantity, setQuantity] = useState('');
+  const [category, setCategory] = useState('');
+  const [difficulty, setDifficulty] = useState('');
 
   const handleQuantity = () => {
     setQuantity(
@@ -88,6 +88,7 @@ const SelectSection = ({ setData }) => {
         category={category}
         difficulty={difficulty}
         setData={setData}
+        setIsLoading={setIsLoading}
       />
     </div>
   );

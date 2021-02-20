@@ -1,28 +1,11 @@
-import {
-  getQuestions1,
-  getQuestions2,
-  getQuestions3,
-  getQuestions4,
-} from "../utils/datafetch";
+import { fetchQuestions } from '../utils/datafetch';
 
-const Button = ({ quantity, category, difficulty, setData }) => {
-
-  const handleClick = () => {
-    if (quantity && !category && !difficulty) {
-      getQuestions1(quantity, setData);
-    }
-    if (
-      (quantity && category && !difficulty) ||
-      difficulty === "any difficulty"
-    ) {
-      getQuestions2(quantity, category, setData);
-    }
-    if (quantity && category && difficulty) {
-      getQuestions3(quantity, category, difficulty, setData);
-    }
-    if (quantity && !category && difficulty) {
-      getQuestions4(quantity, difficulty, setData);
-    }
+const Button = ({ quantity, category, difficulty, setData, setIsLoading }) => {
+  const handleClick = async () => {
+    setIsLoading(true);
+    const results = await fetchQuestions({ quantity, category, difficulty });
+    setData(results);
+    setIsLoading(false);
   };
 
   return (

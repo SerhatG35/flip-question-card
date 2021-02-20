@@ -1,26 +1,22 @@
-import { useRef } from "react";
-import { decodeString } from "../utils/decodeString";
+import { decodeString } from '../utils/decodeString';
 
 const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
+  const removeCard = () => {
+    setTimeout(() => {
+      setData(data.filter((card) => card.correct_answer !== correctAnswer));
+    }, [1000]);
+  };
+
   const checkAnswer = (e) => {
     if (
-      e?.target?.parentNode?.id == currentCard &&
-      e?.target?.textContent == correctAnswer
+      Number(e?.target?.parentNode?.id) === currentCard &&
+      e?.target?.textContent === correctAnswer
     ) {
-      e.target.style.backgroundColor = "green";
-      console.log(data);
-      console.log(currentCard);
-      // setTimeout(() => {
-      //   setData(data.filter((x) => x !== currentCard));
-      // }, [1000]);
+      e.target.style.backgroundColor = 'green';
+      removeCard();
     } else {
-      e.target.style.backgroundColor = "red";
+      e.target.style.backgroundColor = 'red';
     }
-    // console.log(e);
-    // console.log(e.target.textContent, " seçilen cevap");
-    // console.log(correctAnswer, " doğru cevap");
-    // console.log(currentCard, " şuanki kart");
-    // console.log(e.target.parentNode.id, " seçilen kartın bulunduğu kart");
   };
 
   return (
@@ -33,9 +29,9 @@ const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
               return (
                 <button
                   onClick={checkAnswer}
-                  className="options"
-                  key={index}
-                  id={index}
+                  className={`options`}
+                  key={`${index}${x}`}
+                  id={`${index}${x}`}
                 >
                   {decodeString(x)}
                 </button>
