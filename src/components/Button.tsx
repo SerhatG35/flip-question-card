@@ -1,6 +1,15 @@
 import { fetchQuestions } from '../utils/datafetch';
+import { QuestionType } from 'global';
 
-const Button = ({ quantity, category, difficulty, setData, setIsLoading }) => {
+type ButtonProps = {
+  quantity :number
+  category :number
+  difficulty :string
+  setData: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Button = ({ quantity, category, difficulty, setData, setIsLoading } : ButtonProps) => {
   const handleClick = async () => {
     setIsLoading(true);
     const results = await fetchQuestions({ quantity, category, difficulty });
@@ -9,16 +18,14 @@ const Button = ({ quantity, category, difficulty, setData, setIsLoading }) => {
   };
 
   return (
-    <div>
       <button
         className="bringQuestions"
         onClick={() => {
           handleClick();
         }}
       >
-        GETİR FALAN
+        Submit
       </button>
-    </div>
   );
 };
 

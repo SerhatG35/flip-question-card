@@ -1,12 +1,25 @@
-import { decodeString } from '../utils/decodeString';
+import { QuestionType } from 'global';
+import { decodeString } from '../utils/index';
 
-const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
+type CardProps = {
+  setData: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  data : QuestionType[]
+  options : string[]
+  correctAnswer : string
+  card : QuestionType
+  currentCard: number
+};
+
+
+const Card = ({ card, options, correctAnswer, currentCard, setData, data } : CardProps) => {
   const removeCard = () => {
     setTimeout(() => {
       setData(data.filter((card) => card.correct_answer !== correctAnswer));
     }, 1000);
   };
 
+  
+  
   const checkAnswer = (e) => {
     console.log(e);
     if (
@@ -25,7 +38,7 @@ const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
       <div className="content">
         <div className="back">
           <p className="cardQuestion">{decodeString(card?.question)}</p>
-          <div className="optionContainer" id={currentCard}>
+          <div className="optionContainer" id={currentCard.toString()}>
             {options?.map((x, index) => {
               return (
                 <button

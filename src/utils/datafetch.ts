@@ -8,7 +8,7 @@ export const getCategories = async (setCategory) => {
 
 export const fetchQuestions = async ({
   quantity = 1,
-  category = '',
+  category = 9,
   difficulty = '',
 }) => {
   const res = await fetch(

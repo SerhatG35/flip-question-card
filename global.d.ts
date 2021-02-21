@@ -5,3 +5,8 @@ export interface QuestionType {
   correct_answer: string;
   incorrect_answers: string[];
 }
+
+export interface CategoryType{
+  id:number
+  name:string
+}

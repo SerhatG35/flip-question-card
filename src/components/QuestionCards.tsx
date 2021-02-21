@@ -1,6 +1,14 @@
+import { QuestionType } from 'global';
 import Card from './Card';
 
-const QuestionCards = ({ data, options, correctAnswers, setData }) => {
+type QuestionCardsProps = {
+  setData: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  data : QuestionType[]
+  options : string[][]
+  correctAnswers : string[]
+};
+
+const QuestionCards = ({ data, options, correctAnswers, setData } : QuestionCardsProps) => {
   return (
     <div className="cardContainer">
       {data?.map((card, index) => {

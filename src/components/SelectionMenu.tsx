@@ -1,3 +1,4 @@
+import React from 'react'
 import { QuestionType } from 'global';
 import HeadSection from './HeadSection';
 import SelectSection from './SelectSection';

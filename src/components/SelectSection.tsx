@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getCategories } from '../utils/datafetch';
 import Button from './Button';
 import { numberOfQuestions, difficulties } from '../utils/index';
-import { QuestionType } from 'global';
+import { CategoryType, QuestionType } from 'global';
 
 type SelectionMenuProps = {
   setData: React.Dispatch<React.SetStateAction<QuestionType[]>>;
@@ -11,8 +11,8 @@ type SelectionMenuProps = {
 };
 
 const SelectSection = ({ setData, setIsLoading }: SelectionMenuProps) => {
-  const [categories, setCategories] = useState([]);
-
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  
   const inputQuantity = useRef<HTMLSelectElement>(null);
   const inputCategory = useRef<HTMLSelectElement>(null);
   const inputDif = useRef<HTMLSelectElement>(null);
@@ -42,6 +42,7 @@ const SelectSection = ({ setData, setIsLoading }: SelectionMenuProps) => {
   }, []);
   return (
     <div className="selectSection">
+      <div className="selectClass">
       <select
         name=""
         id="quantity"
@@ -87,9 +88,10 @@ const SelectSection = ({ setData, setIsLoading }: SelectionMenuProps) => {
           </option>
         ))}
       </select>
+      </div>
       <Button
-        quantity={quantity}
-        category={category}
+        quantity={Number(quantity)}
+        category={Number(category)}
         difficulty={difficulty}
         setData={setData}
         setIsLoading={setIsLoading}

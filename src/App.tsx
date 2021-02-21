@@ -3,15 +3,14 @@ import { useState, useEffect } from 'react';
 
 import QuestionCards from './components/QuestionCards';
 import SelectionMenu from './components/SelectionMenu';
-import { decodeString } from './utils/decodeString';
-import { shuffleOptions } from './utils/shuffleOptions';
+import { shuffleOptions,decodeString } from './utils/index';
 
 function App() {
   const [data, setData] = useState<QuestionType[]>([]);
   const [options, setOptions] = useState<string[][]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
-
+  
   useEffect(() => {
     setCorrectAnswers(data?.map((x) => decodeString(x.correct_answer)));
     setOptions(
