@@ -1,3 +1,5 @@
+import { QuestionType } from 'global';
+
 export const getCategories = async (setCategory) => {
   const res = await fetch('https://opentdb.com/api_category.php');
   const data = await res.json();
@@ -13,5 +15,5 @@ export const fetchQuestions = async ({
     `https://opentdb.com/api.php?amount=${quantity}&category=${category}&difficulty=${difficulty}`
   );
   const { results = [] } = await res.json();
-  return results;
+  return results as QuestionType[];
 };

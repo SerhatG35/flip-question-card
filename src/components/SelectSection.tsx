@@ -2,14 +2,20 @@ import { useState, useEffect, useRef } from 'react';
 
 import { getCategories } from '../utils/datafetch';
 import Button from './Button';
-import { numberOfQuestions, difficulties } from '../utils';
+import { numberOfQuestions, difficulties } from '../utils/index';
+import { QuestionType } from 'global';
 
-const SelectSection = ({ setData, setIsLoading }) => {
+type SelectionMenuProps = {
+  setData: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SelectSection = ({ setData, setIsLoading }: SelectionMenuProps) => {
   const [categories, setCategories] = useState([]);
 
-  const inputQuantity = useRef(null);
-  const inputCategory = useRef(null);
-  const inputDif = useRef(null);
+  const inputQuantity = useRef<HTMLSelectElement>(null);
+  const inputCategory = useRef<HTMLSelectElement>(null);
+  const inputDif = useRef<HTMLSelectElement>(null);
 
   const [quantity, setQuantity] = useState('');
   const [category, setCategory] = useState('');
@@ -17,19 +23,17 @@ const SelectSection = ({ setData, setIsLoading }) => {
 
   const handleQuantity = () => {
     setQuantity(
-      inputQuantity?.current?.options[inputQuantity?.current?.selectedIndex]
-        ?.text
+      inputQuantity?.current.options[inputQuantity?.current.selectedIndex].text
     );
   };
   const handleCategory = () => {
     setCategory(
-      inputCategory?.current?.options[inputCategory?.current?.selectedIndex]
-        ?.value
+      inputCategory.current.options[inputCategory.current.selectedIndex].value
     );
   };
   const handleDifficulty = () => {
     setDifficulty(
-      inputDif?.current?.options[inputDif?.current?.selectedIndex]?.value
+      inputDif.current.options[inputDif.current.selectedIndex].value
     );
   };
 
@@ -44,7 +48,7 @@ const SelectSection = ({ setData, setIsLoading }) => {
         ref={inputQuantity}
         onChange={handleQuantity}
       >
-        <option value="" defaultValue hidden>
+        <option value="" defaultValue="" hidden>
           Number of Questions
         </option>
         {numberOfQuestions.map((num, index) => (
@@ -57,7 +61,7 @@ const SelectSection = ({ setData, setIsLoading }) => {
         ref={inputCategory}
         onChange={handleCategory}
       >
-        <option value="" defaultValue hidden>
+        <option value="" defaultValue="" hidden>
           Pick Category
         </option>
         {categories.map((category) => {
@@ -74,7 +78,7 @@ const SelectSection = ({ setData, setIsLoading }) => {
         ref={inputDif}
         onChange={handleDifficulty}
       >
-        <option value="" defaultValue hidden>
+        <option value="" defaultValue="" hidden>
           Select Difficulty
         </option>
         {difficulties.map((diff, index) => (

@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { decodeString } from "../utils/decodeString";
+import { decodeString } from '../utils/decodeString';
 
 const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
   const removeCard = () => {
     setTimeout(() => {
       setData(data.filter((card) => card.correct_answer !== correctAnswer));
-    }, [1000]);
+    }, 1000);
   };
 
   const checkAnswer = (e) => {
@@ -14,10 +13,10 @@ const Card = ({ card, options, correctAnswer, currentCard, setData, data }) => {
       Number(e?.target?.parentNode?.id) === currentCard &&
       e?.target?.textContent === correctAnswer
     ) {
-      e.target.style.backgroundColor = "green";
+      e.target.style.backgroundColor = 'green';
       removeCard();
     } else {
-      e.target.style.backgroundColor = "red";
+      e.target.style.backgroundColor = 'red';
     }
   };
 

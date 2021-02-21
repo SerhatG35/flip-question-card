@@ -1,12 +1,6 @@
 import Card from './Card';
 
-const QuestionCards = ({
-  data,
-  options,
-  correctAnswers,
-  setData,
-  setIsLoading,
-}) => {
+const QuestionCards = ({ data, options, correctAnswers, setData }) => {
   return (
     <div className="cardContainer">
       {data?.map((card, index) => {
