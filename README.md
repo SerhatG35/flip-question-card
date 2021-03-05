@@ -5,5 +5,6 @@ Interface and Type is being used to define component props and api definition. <
 Flip Question Card gives you 3 dropdown option to choose 
 - **Number of Question** (needs to be given)
 - **Category** (optional)
-- **Difficulty** (optional)</br></br>
+- **Difficulty** (optional)</br>
+
 Until you pick the correct answer for that card, card will remain.
